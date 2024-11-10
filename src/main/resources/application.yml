@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: docker
+jwt:
+  secretKey: your-secret-key-at-least-256-bits-long-for-hs256
+  validityInMilliseconds: 3600000 # 1 hour
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:postgresql://postgres-container:5432/mydb
+    username: admin
+    password: q1w2e3R$
+  jpa:
+    hibernate:
+      ddl-auto: update    # create, create-drop, validate, update, none
+    show-sql: true        # SQL 쿼리 로그 출력
+    properties:
+      hibernate:
+        format_sql: true  # SQL 쿼리 포맷팅
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydb
+    username: admin
+    password: q1w2e3R$
+  jpa:
+    hibernate:
+      ddl-auto: update    # create, create-drop, validate, update, none
+    show-sql: true        # SQL 쿼리 로그 출력
+    properties:
+      hibernate:
+        format_sql: true  # SQL 쿼리 포맷팅
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
