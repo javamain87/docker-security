@@ -1,0 +1,13 @@
+.gradle
+.idea
+build
+!build/libs
+*.iml
+*.iws
+*.ipr
+out/
+.git
+.gitignore
+README.md
+.DS_Store
+logs/
